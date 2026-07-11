@@ -1,0 +1,6 @@
+{
+  "name": "Math Quest: Advanced Word Problems",
+  "description": "An interactive, gamified educational game featuring 30 advanced math word problems in English for Grades 3-4, with a step-by-step Singapore model method scratchpad and AI Math Coach helper.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
