@@ -717,40 +717,38 @@ export default function App() {
                           </div>
                         )}
 
-                        {/* Short Answer Type */}
-                        {activeQuestion.type === "short_answer" && (
+                        {/* Short Answer Type & fallback for Fill Blank with missing parts */}
+                        {(activeQuestion.type === "short_answer" || (activeQuestion.type === "fill_blank" && !activeQuestion.fillBlankParts)) && (
                           <div className="flex flex-col sm:flex-row items-center gap-3 max-w-md">
                             <input
                               type="text"
                               disabled={submitted}
                               value={typedAnswer}
                               onChange={(e) => setTypedAnswer(e.target.value)}
-                              placeholder="Type final number only (e.g. 25, 40)..."
+                              placeholder="Type final number or answer..."
                               className="w-full bg-slate-950 border-2 border-indigo-900 focus:border-indigo-400 text-white rounded-xl py-3 px-4 outline-none font-bold text-sm"
                               id="short-answer-input"
                             />
                           </div>
                         )}
 
-                        {/* Fill Blanket Type */}
-                        {activeQuestion.type === "fill_blank" && (
+                        {/* Fill Blanket Type with explicit parts */}
+                        {activeQuestion.type === "fill_blank" && activeQuestion.fillBlankParts && (
                           <div className="space-y-3">
                             {/* Visual representation of fill in the blank sentence */}
-                            {activeQuestion.fillBlankParts && (
-                              <div className="bg-slate-950 p-4 rounded-2xl border border-indigo-950 text-xs font-medium leading-relaxed text-indigo-200 flex flex-wrap items-center gap-2">
-                                <span>{activeQuestion.fillBlankParts[0]}</span>
-                                <input
-                                  type="text"
-                                  disabled={submitted}
-                                  value={typedAnswer}
-                                  onChange={(e) => setTypedAnswer(e.target.value)}
-                                  placeholder="..."
-                                  className="bg-indigo-950 border-b-2 border-indigo-400 focus:border-yellow-400 outline-none text-white font-black text-center w-24 py-0.5 px-2"
-                                  id="fill-blank-sentence-input"
-                                />
-                                <span>{activeQuestion.fillBlankParts[1]}</span>
-                              </div>
-                            )}
+                            <div className="bg-slate-950 p-4 rounded-2xl border border-indigo-950 text-xs font-medium leading-relaxed text-indigo-200 flex flex-wrap items-center gap-2">
+                              <span>{activeQuestion.fillBlankParts[0]}</span>
+                              <input
+                                type="text"
+                                disabled={submitted}
+                                value={typedAnswer}
+                                onChange={(e) => setTypedAnswer(e.target.value)}
+                                placeholder="..."
+                                className="bg-indigo-950 border-b-2 border-indigo-400 focus:border-yellow-400 outline-none text-white font-black text-center w-24 py-0.5 px-2"
+                                id="fill-blank-sentence-input"
+                              />
+                              <span>{activeQuestion.fillBlankParts[1]}</span>
+                            </div>
                           </div>
                         )}
 
